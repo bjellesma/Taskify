@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-        <h1>This is the header</h1>
+        <h1>Taskify, remembering things that you can't since 2019</h1>
         <div id="nav">
             <router-link to="/">Home</router-link> |
             <router-link to="/lists">Task Lists</router-link> |

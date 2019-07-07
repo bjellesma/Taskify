@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <h3>This is the home page</h3>
+    <p>Taskify is an app to remember all of your tasks. To get started, navigate to 
+      <router-link to="/lists">task lists</router-link> and create a new task list.
+    </p>
   </div>
 </template>
 

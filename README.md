@@ -1,29 +1,3 @@
-# taskify
+# Setup
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. After you've cloned this package, install the vue cli with `npm install -g @vue/cli` (You may need to use sudo if you're using linux)

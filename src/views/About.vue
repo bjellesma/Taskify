@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>Task list is an app that helps you to remember the tasks that you can't.</h1>
   </div>
 </template>

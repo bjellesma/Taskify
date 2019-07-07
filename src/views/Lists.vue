@@ -17,15 +17,18 @@ export default {
             lists: [
                 {
                     id:1,
-                    name: 'List 1'
+                    list_display_name: 'Critical',
+                    list_name: 'critical'
                 },
                 {
                     id:2,
-                    name: 'List 2'
+                    list_display_name: 'High Priority',
+                    list_name: 'high'
                 },
                 {
                     id:3,
-                    name: 'List 3'
+                    list_display_name: 'Medium Priority',
+                    list_name: 'medium'
                 }
             ]
         }
