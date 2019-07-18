@@ -13,24 +13,24 @@ export default {
         Tasklists
     },
     data(){
+         let names = []
+        const axios = require('axios');
+        axios.get('http://localhost:3001/api/getlists')
+        .then(function (response) {
+            response.data.forEach(element => {
+                names.push({
+                    uid: element["uid"],
+                    id: 12,
+                    name: element["name"]
+                })
+            });
+        })
+        .catch(function (error) {
+            // handle error
+            alert(`error: ${error}`);
+        })
         return {
-            lists: [
-                {
-                    id:1,
-                    list_display_name: 'Critical',
-                    list_name: 'critical'
-                },
-                {
-                    id:2,
-                    list_display_name: 'High Priority',
-                    list_name: 'high'
-                },
-                {
-                    id:3,
-                    list_display_name: 'Medium Priority',
-                    list_name: 'medium'
-                }
-            ]
+            lists: names
         }
     }
 }

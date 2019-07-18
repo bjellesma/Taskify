@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-bind:key="list.id" v-for="list in lists">
+        <div v-bind:key="list.uid" v-for="list in lists" :id="list.uid">
             <Tasklist v-bind:Item="list" />
         </div>
         
