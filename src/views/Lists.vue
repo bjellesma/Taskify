@@ -1,19 +1,22 @@
 <template>
     <div classs="lists">
         <h3>This is the task list page</h3>
+        <flash-message class="myCustomClass"></flash-message>
         <Tasklists v-bind:lists="lists" />
     </div>
 </template>
 
 <script>
 import Tasklists from '@/components/Tasklists'
+
 export default {
     name: 'Lists',
     components: {
         Tasklists
     },
     data(){
-         let names = []
+        var app = this
+        let names = []
         const axios = require('axios');
         axios.get('http://localhost:3001/api/getlists')
         .then(function (response) {
@@ -26,8 +29,8 @@ export default {
             });
         })
         .catch(function (error) {
-            // handle error
-            alert(`error: ${error}`);
+            app.flash('Oops, It looks like we could not connect to the server', 'error');
+            return 
         })
         return {
             lists: names
