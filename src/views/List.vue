@@ -1,13 +1,43 @@
 <template>
     <div class="list">
-        This is a list component
+        <h3>This is the task list page</h3>
+        <flash-message></flash-message>
+        <Tasklist v-bind:tasks="tasks" />
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Tasklist from '@/components/Tasklist'
 
 export default {
   name: 'list',
+  components: {
+      Tasklist
+  },
+  data(){
+    //get current uid of list
+    let uid = this.$route.params.uid
+    var app = this
+    let tasks = []
+    const axios = require('axios');
+    axios.get(`http://localhost:3001/api/gettasks?id=${uid}`)
+    .then(function (response) {
+        response.data.forEach(element => {
+            tasks.push({
+                uid: element["uid"],
+                id: 12,
+                name: element["name"]
+            })
+        });
+    })
+    .catch(function (error) {
+        app.flash('Oops, It looks like we could not connect to the server', 'error');
+        return 
+    })
+    return {
+        tasks: tasks
+    }
+  }
 }
 </script>

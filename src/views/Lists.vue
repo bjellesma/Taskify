@@ -1,7 +1,7 @@
 <template>
     <div classs="lists">
         <h3>This is the task list page</h3>
-        <flash-message class="myCustomClass"></flash-message>
+        <flash-message></flash-message>
         <Tasklists v-bind:lists="lists" />
     </div>
 </template>

@@ -1,17 +1,22 @@
 <template>
-    <div class="Tasklist">
-        <h3>
-            <router-link :to="'list/'+Item.uid" v-bind:list_name=Item.list_name>
-                {{Item.name}}
-            </router-link>
-        </h3>
+    <div>
+        <div v-bind:key="task.uid" v-for="task in tasks" :id="task.uid">
+            <!-- <Tasklist v-bind:Item="list" /> -->
+            <div v-bind:task_name=task.name>
+                {{task.name}}
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import Tasklist from '@/components/Tasklist'
 export default {
     name: 'Tasklist',
-    props: ['Item'],
+    components: {
+        Tasklist
+    },
+    props: ['tasks'],
      methods: {
     
     }
