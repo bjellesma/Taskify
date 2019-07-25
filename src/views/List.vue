@@ -27,7 +27,8 @@ export default {
             tasks.push({
                 uid: element["uid"],
                 id: 12,
-                name: element["name"]
+                title: element["title"],
+                completed: element["completed"]
             })
         });
     })
