@@ -3,9 +3,11 @@
         <AddTodo v-on:add-todo="addTodo" />
         <div v-bind:key="task.uid" v-for="task in tasks" :id="task.uid">
             <!-- <Tasklist v-bind:Item="list" /> -->
-            <div v-bind:task_name=task.title>
+            <div v-bind:task_id=task.id>
                 {{task.title}}
+                <input type="checkbox" v-on:change="markComplete(task, $event)" :checked="task.completed">
             </div>
+            
         </div>
     </div>
 </template>
@@ -52,7 +54,24 @@ export default {
             //we're also adding our newTodo object
             //NOTE: only needed for local testing (no api)
             //this.todos = [...this.todos, newTodo]
+            
 
+        },
+        markComplete(task, event){ 
+            // TODO get state of checked
+            let completed = event.target.checked
+            axios.put('http://localhost:3001/api/updatetaskcomplete',
+            {
+                task_id: task.uid,
+                //using not operator to negate value
+                completed: completed
+            })
+            .then(
+                
+            )
+            .catch(
+                err => console.log(err)
+            )
         }
     }
 }
