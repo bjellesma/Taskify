@@ -1,6 +1,5 @@
 <template>
     <div class="list">
-        <h3>This is the task list page</h3>
         <flash-message></flash-message>
         <Tasklist v-bind:tasks="tasks" />
     </div>

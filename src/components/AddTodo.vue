@@ -4,8 +4,10 @@
         <!-- prevent will prevent the page from automatically reloading -->
         <!-- In order to pass the actual event raised, we use $event -->
         <form @submit.prevent="addTodo($event);">
-            <input type="text" name="title" placeholder="Add Task" v-model="title">
-            <input type="submit" value="Submit" class="btn">
+            <div class="form-group offset-md-4">
+                <input type="text" name="title" placeholder="Add Task" v-model="title">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
         </form>
     </div>
 </template>
