@@ -18,7 +18,7 @@ export default {
         var app = this
         let names = []
         const axios = require('axios');
-        axios.get('http://localhost:3001/api/getlists')
+        axios.get('https://evening-temple-48538.herokuapp.com/api/getlists')
         .then(function (response) {
             response.data.forEach(element => {
                 names.push({

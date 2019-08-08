@@ -60,7 +60,7 @@ export default {
         markComplete(task, event){ 
             // TODO get state of checked
             let completed = event.target.checked
-            axios.put('http://localhost:3001/api/updatetaskcomplete',
+            axios.put('https://evening-temple-48538.herokuapp.com/api/updatetaskcomplete',
             {
                 task_id: task.uid,
                 //using not operator to negate value
