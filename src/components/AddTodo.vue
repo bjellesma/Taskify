@@ -4,7 +4,7 @@
         <!-- prevent will prevent the page from automatically reloading -->
         <!-- In order to pass the actual event raised, we use $event -->
         <form @submit.prevent="addTodo($event);">
-            <div class="form-group offset-md-4">
+            <div class="form-group">
                 <input type="text" name="title" placeholder="Add Task" v-model="title">
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>

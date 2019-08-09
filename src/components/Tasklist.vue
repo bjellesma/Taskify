@@ -22,14 +22,14 @@ export default {
         Tasklist,
         AddTodo
     },
-    props: ['tasks'],
+    props: ['listId'],
      methods: {
     
     },
     methods: {
         addTodo(newTodo){
-            //get current uid of list
-            let list_id = this.$route.params.uid
+            //get current uid of list from either being bound or taking from the url
+            let list_id = this.listId ? this.listId : this.$route.params.uid
             //ES6 destructuring
             //similar to tuple unpacking in python
             const {title, completed} = newTodo;
@@ -73,7 +73,32 @@ export default {
                 err => console.log(err)
             )
         }
+    },
+    data(){
+    //get current uid of list
+    let uid = this.listId ? this.listId : this.$route.params.uid
+    var app = this
+    let tasks = []
+    const axios = require('axios');
+    axios.get(`https://evening-temple-48538.herokuapp.com/api/gettasks?id=${uid}`)
+    .then(function (response) {
+        response.data.forEach(element => {
+            tasks.push({
+                uid: element["uid"],
+                id: 12,
+                title: element["title"],
+                completed: element["completed"]
+            })
+        });
+    })
+    .catch(function (error) {
+        app.flash('Oops, It looks like we could not connect to the server', 'error');
+        return 
+    })
+    return {
+        tasks: tasks
     }
+  }
 }
 </script>
 
