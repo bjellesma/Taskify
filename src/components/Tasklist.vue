@@ -35,7 +35,7 @@ export default {
             const {title, completed} = newTodo;
             //NOTE: unfortunately, jsonplaceholder does not provide us with persistent storage so our data won't persist
             axios.post(
-                'http://localhost:3001/api/addtask',
+                'https://evening-temple-48538.herokuapp.com/api/addtask',
                 {
                 title: title,
                 completed: completed,
