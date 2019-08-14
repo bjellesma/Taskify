@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store.js'
 import Home from './views/Home.vue'
 import Lists from './views/Lists.vue'
 import List from './views/List.vue'
+import Login from './views/Login.vue'
+import Register from './components/Register.vue'
+import Secure from './components/Secure.vue'
 
 Vue.use(Router)
 
-export default new Router({
+
+
+let router = new Router({
   routes: [
     {
       path: '/',
@@ -24,12 +30,48 @@ export default new Router({
     {
       path: '/lists',
       name: 'lists',
-      component: Lists
+      component: Lists,
+      meta: { 
+        requiresAuth: true
+      }
     },
     {
       path: '/list/:uid',
       name: 'list',
       component: List
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    // {
+    //   path: '/register',
+    //   name: 'register',
+    //   component: Register
+    // },
+    {
+      path: '/secure',
+      name: 'secure',
+      component: Secure,
+      meta: { 
+        requiresAuth: true
+      }
     }
   ]
 })
+
+//if the router has meta data require auth
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login') 
+  } else {
+    next() 
+  }
+})
+
+export default router
