@@ -5,7 +5,10 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item class="nav-item">
+                    <b-nav-item class="nav-item" v-if="isLoggedIn"> 
+                        Hello {{user.username}}
+                    </b-nav-item>
+                    <b-nav-item class="nav-item" v-else>
                         <router-link class="nav-link" to="/login">Login</router-link>
                     </b-nav-item>
                     <b-nav-item>
@@ -19,7 +22,9 @@
                     </b-nav-item>
                     
                     <b-nav-item class="nav-item">
-                        <span v-if="isLoggedIn"> | <a class="nav-link" @click="logout">Logout</a></span>
+                        <span v-if="isLoggedIn">
+                            <a class="nav-link" @click="logout">Logout</a>
+                        </span>
                     </b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
@@ -31,7 +36,10 @@
 export default {
     name: "Header",
     computed : {
-      isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+      user: function(){
+          return this.$store.getters.user
+      }
     },
     methods: {
       logout: function () {
