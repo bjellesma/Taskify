@@ -29,3 +29,7 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+function test(){
+  alert('hello world')
+}

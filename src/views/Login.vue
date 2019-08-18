@@ -1,5 +1,8 @@
 <template>
-  <Login />
+  <div>
+    <flash-message></flash-message>
+    <Login />
+  </div>
 </template>
 
 <script>

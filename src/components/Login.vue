@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import {destroy_messages} from '../functions/globals.js'
 export default {
     name: 'Login',
     data(){
@@ -30,8 +31,15 @@ export default {
                 'login', 
                 { email, password }
             )
-            .then(() => this.$router.push('/'))
-            .catch(err => console.log(err))
+            .then(
+              () => this.$router.push('/')
+            )
+            .catch(
+              err => {
+                destroy_messages()
+                this.flash(err, 'error')
+              }
+            )
       }
     }
 }
