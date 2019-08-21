@@ -5,16 +5,16 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
+                    <b-navbar-brand href="/">
+                        <router-link class="nav-link" to="/">T.IO</router-link>
+                    </b-navbar-brand>
                     <b-nav-item class="nav-item" v-if="isLoggedIn"> 
-                        Hello {{user.username}}
+                        <router-link class="nav-link" to="/">{{user.username}}</router-link>
                     </b-nav-item>
                     <b-nav-item class="nav-item" v-else>
                         <router-link class="nav-link" to="/login">Login</router-link>
                     </b-nav-item>
-                    <b-nav-item>
-                        <router-link class="nav-link" to="/">Home<span class="sr-only">(current)</span></router-link>
-                    </b-nav-item>
-                    <b-nav-item>
+                    <b-nav-item v-if="isLoggedIn">
                         <router-link class="nav-link" to="/lists">Task Lists</router-link>
                     </b-nav-item>
                     <b-nav-item class="nav-item">

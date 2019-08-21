@@ -1,8 +1,8 @@
 <template>
-  <div class="container" id="app">
+  <b-container fluid id="app">
     <Header />
     <router-view/>
-  </div>
+  </b-container>
 </template>
 
 <script>

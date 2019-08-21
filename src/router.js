@@ -6,7 +6,7 @@ import Lists from './views/Lists.vue'
 import List from './views/List.vue'
 import Login from './views/Login.vue'
 import Register from './components/Register.vue'
-import Secure from './components/Secure.vue'
+import Profile from './components/Profile.vue'
 
 Vue.use(Router)
 
@@ -38,22 +38,28 @@ let router = new Router({
     {
       path: '/list/:uid',
       name: 'list',
-      component: List
+      component: List,
+      meta: { 
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
       name: 'login',
       component: Login
     },
-    // {
-    //   path: '/register',
-    //   name: 'register',
-    //   component: Register
-    // },
     {
-      path: '/secure',
-      name: 'secure',
-      component: Secure,
+      path: '/register',
+      name: 'register',
+      component: Register,
+      meta: { 
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
       meta: { 
         requiresAuth: true
       }
