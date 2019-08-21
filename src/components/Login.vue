@@ -32,7 +32,10 @@ export default {
                 { email, password }
             )
             .then(
-              () => this.$router.push('/')
+              //redirect user to home
+              // we use windows.location here because it forces an entire redirect
+               //this.$router.push('/') will only redirect without reloading the entire page
+              () => window.location.href = "/"
             )
             .catch(
               err => {

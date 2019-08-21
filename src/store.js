@@ -34,9 +34,9 @@ export default new Vuex.Store({
           commit('auth_request')
           axios({url: 'https://evening-temple-48538.herokuapp.com/login', data: user, method: 'POST' })
           .then(resp => {
+            //if properly authenticated, store the user object and token in localstorage and set axios to have an authenicated header
             if(resp.data.authenticated){
               console.log(`login: ${resp.data.user}`)
-              
               const token = resp.data.token
               const user = JSON.stringify(resp.data.user)
               console.log(`user: ${user.id}`)
