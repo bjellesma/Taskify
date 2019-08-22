@@ -80,7 +80,7 @@ export default {
     var app = this
     let tasks = []
     const axios = require('axios');
-    axios.get(`https://evening-temple-48538.herokuapp.com/api/gettasks?id=${uid}`)
+    axios.get(`http://localhost:3001/api/gettasks?id=${uid}&limit=2`)
     .then(function (response) {
         response.data.forEach(element => {
             tasks.push({

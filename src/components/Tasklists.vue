@@ -11,14 +11,16 @@
                 <flash-message></flash-message>
                 <Tasklist v-bind:list-id=list.uid class="tasklist" />
             </div>
+
         </div>
-        
+        <AddList v-on:add-list="addList" />
     </div>
 </template>
 
 <script>
 import Tasklists from '@/components/Tasklists'
 import Tasklist from '@/components/Tasklist'
+import AddList from '@/components/AddList'
 // import AddTodo from '@/components/AddTodo'
 import axios from 'axios'
 export default {
@@ -26,67 +28,45 @@ export default {
     components: {
         Tasklists,
         Tasklist,
-        // AddTodo
+        AddList
     },
+    
     props: [
         "lists",
         // 'tasks'
     ],
-    // methods: {
-    //     addTodo(newTodo){
-    //         //get current uid of list
-    //         let list_id = this.$route.params.uid
-    //         //ES6 destructuring
-    //         //similar to tuple unpacking in python
-    //         const {title, completed} = newTodo;
-    //         //NOTE: unfortunately, jsonplaceholder does not provide us with persistent storage so our data won't persist
-    //         axios.post(
-    //             'https://evening-temple-48538.herokuapp.com/api/addtask',
-    //             {
-    //             title: title,
-    //             completed: completed,
-    //             list_id: list_id
-    //             }
-    //         )
-    //         .then(
-    //             res => {
-    //                 this.tasks = [...this.tasks, res.data]
-    //             }
-    //         )
-    //         .catch(
-    //             err => console.log(err)
-    //         )
-    //         //the spread operator (...) is used to make a seperate object for each item in the todo list
-    //         //we're also adding our newTodo object
-    //         //NOTE: only needed for local testing (no api)
-    //         //this.todos = [...this.todos, newTodo]
-            
-
-    //     },
-    //     markComplete(task, event){ 
-    //         // TODO get state of checked
-    //         let completed = event.target.checked
-    //         axios.put('https://evening-temple-48538.herokuapp.com/api/updatetaskcomplete',
-    //         {
-    //             task_id: task.uid,
-    //             //using not operator to negate value
-    //             completed: completed
-    //         })
-    //         .then(
-                
-    //         )
-    //         .catch(
-    //             err => console.log(err)
-    //         )
-    //     }
-    // }
+    methods: {
+        addList(newList){
+            //TODO: get user id
+            const user_id=this.$store.getters.user.id
+            console.log(`id: ${user_id}`)
+            //ES6 destructuring
+            //similar to tuple unpacking in python
+            const {name} = newList;
+            //NOTE: unfortunately, jsonplaceholder does not provide us with persistent storage so our data won't persist
+            axios.post(
+                'http://localhost:3001/api/addlist',
+                {
+                name: name,
+                user_id: user_id
+                }
+            )
+            .then(
+                res => {
+                    this.lists = [...this.lists, res.data]
+                }
+            )
+            .catch(
+                err => console.log(err)
+            )
+        }
+    }
 }
 </script>
 
 <style scoped>
 .tasklist {
     border:1px solid black;
-    height:50em;
     padding:0;
 }
 .title {
