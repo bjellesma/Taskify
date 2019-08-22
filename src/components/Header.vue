@@ -1,6 +1,5 @@
 <template>
     <div id="header">
-        <h1>Taskify, remembering things that you can't since 2019</h1>
         <b-navbar toggleable="lg" type="dark" variant="info">
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>

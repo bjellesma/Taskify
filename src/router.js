@@ -68,6 +68,7 @@ let router = new Router({
 })
 
 //if the router has meta data require auth
+//TODO: We can create meta data for different auth levels
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
