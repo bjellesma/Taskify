@@ -1,19 +1,25 @@
 <template>
-    <div class="row">
-        <div v-bind:key="list.uid" v-for="list in lists" :id="list.uid" class="col-md-4 tasklist">
-            <!-- <Tasklist v-bind:Item="list" /> -->
-            <h3 class="title">
+    <div>
+        <b-row class="row-inside">
+            <div v-bind:key="list.uid" v-for="list in lists" :id="list.uid" class="col-md-4 tasklist">
+                <!-- <Tasklist v-bind:Item="list" /> -->
+                <h3 class="title">
+                    <router-link :to="'list/'+list.uid" v-bind:list_name=list.list_name>
+                        {{list.name}}
+                    </router-link>
+                </h3>
+                <div class="list">
+                    <flash-message></flash-message>
+                    <Tasklist v-bind:list-id=list.uid class="tasklist" />
+                </div>
+                <!-- TODO: Unless this was all of the tasks -->
                 <router-link :to="'list/'+list.uid" v-bind:list_name=list.list_name>
-                    {{list.name}}
+                        <b-button variant="success">See All Tasks</b-button>
                 </router-link>
-            </h3>
-            <div class="list">
-                <flash-message></flash-message>
-                <Tasklist v-bind:list-id=list.uid class="tasklist" />
+                
             </div>
-
-        </div>
-        <AddList v-on:add-list="addList" />
+            <AddList v-on:add-list="addList" class="col-md-4" />
+        </b-row>
     </div>
 </template>
 
@@ -65,6 +71,9 @@ export default {
 </script>
 
 <style scoped>
+.row-inside {
+    margin: 0;
+}
 .tasklist {
     border:1px solid black;
     padding:0;

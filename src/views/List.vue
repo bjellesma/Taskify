@@ -1,18 +1,18 @@
 <template>
     <div class="list">
         <flash-message></flash-message>
-        <Tasklist />
+        <FullTasklist />
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Tasklist from '@/components/Tasklist'
+import FullTasklist from '@/components/FullTasklist'
 import Tasklists from '@/components/Tasklists'
 export default {
   name: 'list',
   components: {
-      Tasklist, 
+      FullTasklist, 
       Tasklists
   }
 }

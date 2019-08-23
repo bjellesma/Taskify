@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="addList($event);">
         <div class="form-group">
-            <input type="text" name="name" placeholder="Add List" v-model="name">
+            <input class="list-input" type="text" name="name" placeholder="Add List" v-model="name">
         </div>
         <input type="submit" value="Create" class="btn btn-primary">
     </form>
@@ -34,6 +34,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+form {
+    width:100%;
+}
+.form-group {
+    width:100%;
+}
+input[type="text"] {
+    width:100%;
+  }
 </style>

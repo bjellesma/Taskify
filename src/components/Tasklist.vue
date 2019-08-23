@@ -9,6 +9,7 @@
             </div>
             
         </div>
+        
     </div>
 </template>
 
@@ -23,8 +24,11 @@ export default {
         AddTodo
     },
     props: ['listId'],
-     methods: {
-    
+    computed : {
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+      user: function(){
+          return this.$store.getters.user
+      }
     },
     methods: {
         addTodo(newTodo){
@@ -75,34 +79,39 @@ export default {
         }
     },
     data(){
-    //get current uid of list
-    let uid = this.listId ? this.listId : this.$route.params.uid
-    var app = this
-    let tasks = []
-    const axios = require('axios');
-    axios.get(`http://localhost:3001/api/gettasks?id=${uid}&limit=2`)
-    .then(function (response) {
-        response.data.forEach(element => {
-            tasks.push({
-                uid: element["uid"],
-                id: 12,
-                title: element["title"],
-                completed: element["completed"]
-            })
-        });
-    })
-    .catch(function (error) {
-        app.flash('Oops, It looks like we could not connect to the server', 'error');
-        return 
-    })
-    return {
-        tasks: tasks
+        var limit = 50
+        let route_name = this.$route.name
+        if(route_name == 'lists'){
+            limit=5
+        }
+        //get current uid of list
+        let uid = this.listId ? this.listId : this.$route.params.uid
+        var app = this
+        let tasks = []
+        const axios = require('axios');
+        axios.get(`http://localhost:3001/api/gettasks?id=${uid}&limit=${limit}`)
+        .then(function (response) {
+            response.data.forEach(element => {
+                tasks.push({
+                    uid: element["uid"],
+                    id: 12,
+                    title: element["title"],
+                    completed: element["completed"]
+                })
+            });
+        })
+        .catch(function (error) {
+            app.flash('Oops, It looks like we could not connect to the server', 'error');
+            return 
+        })
+        return {
+            tasks: tasks
+        }
     }
-  }
 }
 </script>
 
-<style>
+<style scoped>
 * {
   box-sizing: border-box;
   margin:0;
