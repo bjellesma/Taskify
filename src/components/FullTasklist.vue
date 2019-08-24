@@ -21,7 +21,7 @@ export default {
         var list = {}
         let tasks = []
         const axios = require('axios');
-        var req = axios.get(`http://localhost:3001/api/getlist?id=${uid}`)
+        var req = axios.get(`https://evening-temple-48538.herokuapp.com/api/getlist?id=${uid}`)
           .then(function (response) {
               //me must add a property to the object rather than redefine it so that the promise will complete successfully
               list['data'] = response.data
@@ -31,7 +31,7 @@ export default {
               app.flash('Oops, It looks like we could not connect to the server', 'error');
               return 
           })
-        var req2 = axios.get(`http://localhost:3001/api/gettasks?id=${uid}&limit=${limit}`)
+        var req2 = axios.get(`https://evening-temple-48538.herokuapp.com/api/gettasks?id=${uid}&limit=${limit}`)
           .then(function (response) {
               response.data.forEach(element => {
                   tasks.push({
