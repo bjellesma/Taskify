@@ -2,9 +2,9 @@
   <div>
     <h4>Register</h4>
     <form @submit.prevent="register">
-      <label for="name">Name</label>
+      <label for="name">Username</label>
       <div>
-          <input id="name" type="text" v-model="name" required autofocus>
+          <input id="username" type="text" v-model="username" required autofocus>
       </div>
 
       <label for="email" >E-Mail Address</label>
@@ -33,20 +33,20 @@
   export default {
     data(){
       return {
-        name : "",
+        username : "",
         email : "",
         password : "",
-        password_confirmation : "",
-        is_admin : null
+        password_confirmation : ""
       }
     },
     methods: {
+      // method to register users, successfully registered users are redirected to the home page
       register: function () {
         let data = {
-          name: this.name,
+          username: this.username,
           email: this.email,
           password: this.password,
-          is_admin: this.is_admin
+          password_confirmation: this.password_confirmation
         }
         this.$store.dispatch('register', data)
        .then(() => this.$router.push('/'))

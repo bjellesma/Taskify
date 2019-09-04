@@ -36,10 +36,8 @@ export default new Vuex.Store({
           .then(resp => {
             //if properly authenticated, store the user object and token in localstorage and set axios to have an authenicated header
             if(resp.data.authenticated){
-              console.log(`login: ${resp.data.user}`)
               const token = resp.data.token
               const user = JSON.stringify(resp.data.user)
-              console.log(`user: ${user.id}`)
               localStorage.setItem('token', token)
               localStorage.setItem('user', user)
               axios.defaults.headers.common['Authorization'] = token

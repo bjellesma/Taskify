@@ -16,6 +16,9 @@
                     <b-nav-item v-if="isLoggedIn">
                         <router-link class="nav-link" to="/lists">Task Lists</router-link>
                     </b-nav-item>
+                    <b-nav-item class="nav-item" v-if="isLoggedIn"> 
+                        <router-link class="nav-link" to="/register">Register</router-link>
+                    </b-nav-item>
                     <b-nav-item class="nav-item">
                         <router-link class="nav-link" to="/about">About</router-link>
                     </b-nav-item>
