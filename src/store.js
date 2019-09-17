@@ -2,13 +2,17 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+var user = null
+if(localStorage.getItem('user')!='undefined'){
+  user = JSON.parse(localStorage.getItem('user'))
+}
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
-    user : JSON.parse(localStorage.getItem('user')) || 'failure'
+    user : user || 'failure'
   },
   mutations: {
     auth_request(state){
@@ -60,8 +64,8 @@ export default new Vuex.Store({
           commit('auth_request')
           axios({url: 'https://evening-temple-48538.herokuapp.com/register', data: user, method: 'POST' })
           .then(resp => {
-            
-            console.log(`login 2 ${JSON.stringify(user)}`)
+            const token = resp.data.token
+            const user = JSON.stringify(resp.data.user)
             localStorage.setItem('token', token)
             localStorage.setItem('user', user)
             axios.defaults.headers.common['Authorization'] = token

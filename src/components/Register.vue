@@ -1,31 +1,67 @@
 <template>
   <div>
     <h4>Register</h4>
-    <form @submit.prevent="register">
-      <label for="name">Username</label>
-      <div>
-          <input id="username" type="text" v-model="username" required autofocus>
-      </div>
+    <b-form @submit.prevent="register">
+      <b-row>
+        <b-col sm="3">
+          <label for="username">Username</label>
+        </b-col>
+        <b-col sm="9">
+            <b-form-input 
+              id="username" 
+              type="text" 
+              v-model="username" 
+              required
+              placeholder="Superman"
+            ></b-form-input>
+        </b-col>
+      </b-row>
 
-      <label for="email" >E-Mail Address</label>
-      <div>
-          <input id="email" type="email" v-model="email" required>
-      </div>
+      <b-row>
+        <b-col sm="3">
+          <label for="email" >E-Mail Address</label>
+        </b-col>
+        <b-col sm="9">
+            <b-form-input 
+              id="email" 
+              type="email" 
+              v-model="email" 
+              required
+              placeholder="Superman@fortresses"
+            ></b-form-input>
+        </b-col>
+      </b-row>
 
-      <label for="password">Password</label>
-      <div>
-          <input id="password" type="password" v-model="password" required>
-      </div>
+      <b-row>
+        <b-col sm="3">
+          <label for="password">Password</label>
+        </b-col>
+        <b-col sm="9">
+            <b-form-input 
+              id="password" 
+              type="password" 
+              v-model="password" 
+              required
+              placeholder="Kryptonite1"
+            ></b-form-input>
+        </b-col>
+      </b-row>
 
-      <label for="password-confirm">Confirm Password</label>
-      <div>
-          <input id="password-confirm" type="password" v-model="password_confirmation" required>
-      </div>
-
-      <div>
-          <button type="submit">Register</button>
-      </div>
-    </form>
+      <b-row>
+        <b-col sm="3">
+          <label for="password-confirm">Confirm Password</label>
+        </b-col>
+        <b-col sm="9">
+            <b-form-input 
+              id="password-confirm" 
+              type="password" 
+              v-model="password_confirmation" 
+              required
+            ></b-form-input>
+        </b-col>
+      </b-row>
+      <b-button type="submit" variant="primary">Register</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -49,7 +85,7 @@
           password_confirmation: this.password_confirmation
         }
         this.$store.dispatch('register', data)
-       .then(() => this.$router.push('/'))
+       .then(() => this.$router.push('/login'))
        .catch(err => console.log(err))
       }
     }
