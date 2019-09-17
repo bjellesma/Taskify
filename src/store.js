@@ -58,7 +58,7 @@ export default new Vuex.Store({
     register({commit}, user){
         return new Promise((resolve, reject) => {
           commit('auth_request')
-          axios({url: 'http://localhost:3001/register', data: user, method: 'POST' })
+          axios({url: 'https://evening-temple-48538.herokuapp.com/register', data: user, method: 'POST' })
           .then(resp => {
             
             console.log(`login 2 ${JSON.stringify(user)}`)

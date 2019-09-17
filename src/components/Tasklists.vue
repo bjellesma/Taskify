@@ -2,7 +2,6 @@
     <div>
         <b-row class="row-inside">
             <div v-bind:key="list.uid" v-for="list in lists" :id="list.uid" class="col-md-4 tasklist">
-                <!-- <Tasklist v-bind:Item="list" /> -->
                 <h3 class="title">
                     <router-link :to="'list/'+list.uid" v-bind:list_name=list.list_name>
                         {{list.name}}
@@ -16,7 +15,6 @@
                 <router-link :to="'list/'+list.uid" v-bind:list_name=list.list_name>
                         <b-button variant="success">See All Tasks</b-button>
                 </router-link>
-                
             </div>
             <AddList v-on:add-list="addList" class="col-md-4" />
         </b-row>
@@ -41,11 +39,15 @@ export default {
         "lists",
         // 'tasks'
     ],
+    computed : {
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+      user: function(){
+          return this.$store.getters.user
+      }
+    },
     methods: {
         addList(newList){
-            //TODO: get user id
             const user_id=this.$store.getters.user.id
-            console.log(`id: ${user_id}`)
             //ES6 destructuring
             //similar to tuple unpacking in python
             const {name} = newList;
