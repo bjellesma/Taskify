@@ -1,18 +1,19 @@
 <template>
     <div>
         <AddTodo v-on:add-todo="addTodo" />
-        <div v-bind:key="task.uid" v-for="task in tasks" :id="task.uid">
-            <!-- <Tasklist v-bind:Item="list" /> -->
-            <div v-bind:task_id=task.id class="form-group">
-                <b-col sm="3">
-                    <label>{{task.title}}</label> 
-                </b-col>
-                <b-col sm="9">
-                    <input class="form-check-input" type="checkbox" v-on:change="markComplete(task, $event)" :checked="task.completed">
-                </b-col>
-            </div>
-            
-        </div>
+        <b-row class="taskRow" v-bind:key="task.uid" v-for="task in tasks" :id="task.uid">
+            <b-col sm="1">
+                <b-form-checkbox 
+                    :id="task.uid"
+                    type="checkbox" 
+                    v-on:change="markComplete(task, $event)" 
+                    :checked="task.completed"
+                ></b-form-checkbox>
+            </b-col>
+            <b-col sm="3">
+                <label class="taskLabel" :for="task.uid">{{task.title}}</label> 
+            </b-col>
+        </b-row>
         
     </div>
 </template>
@@ -121,7 +122,12 @@ export default {
   margin:0;
   padding:0;
 }
-
+.taskRow{
+    margin: 0;
+}
+taskLabel{
+    text-align: left;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height:1.4;
