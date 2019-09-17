@@ -51,10 +51,7 @@ let router = new Router({
     {
       path: '/register',
       name: 'register',
-      component: Register,
-      meta: { 
-        requiresAuth: true
-      }
+      component: Register
     },
     {
       path: '/profile',
