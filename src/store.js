@@ -89,7 +89,6 @@ export default new Vuex.Store({
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
     user: state => {
-      console.log("has " + JSON.stringify(localStorage.getItem("user")))
       return state.user
     }
   }
